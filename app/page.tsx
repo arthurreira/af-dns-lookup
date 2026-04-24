@@ -33,8 +33,11 @@ export default function Page() {
         setResult(data);
       }
       catch (error) {
-        toast.error(error.message)
-
+        if (error instanceof Error) {
+          toast.error(error.message)
+        } else {
+          toast.error("Something went wrong")
+        }
       }
       finally {
 
