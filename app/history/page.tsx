@@ -1,4 +1,5 @@
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
+import { redis } from "@/lib/redis-client"
 import Link from "next/link"
 
 interface LookupRecord {
@@ -9,9 +10,8 @@ interface LookupRecord {
 }
 export default async function Page() {
 
-  const res = await fetch('http://localhost:3000/api/history')
-
-  const data = await res.json()
+  const keys = await redis.keys('lookup:*')
+  const data = keys.length ? await redis.mget<LookupRecord[]>(...keys) : []
 
   return (
 
@@ -43,7 +43,7 @@ export default async function Page() {
                   </p>
                 </div>
               </CardHeader>
-              <CardContent className="text-xs bg-muted rounded-md p-3 overflow-auto max-h-full">
+              <CardContent className="text-xs bg-muted border  rounded-md p-3 overflow-auto max-h-full">
                 <pre >
                   <code>{JSON.stringify(lookup, null, 2)}</code>
                 </pre>
