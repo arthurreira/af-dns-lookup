@@ -1,8 +1,8 @@
-import dns from 'dns/promises';
+const dns = require('dns/promises')
 
 
 
-export const handler = async (event) => {
+exports.handler = async (event) => {
     const queryDomain = event.queryStringParameters.domain;
     const queryType = event.queryStringParameters.type;
 
@@ -15,12 +15,18 @@ export const handler = async (event) => {
         return {
             statusCode: 200,
             body: JSON.stringify({ result }),
+            headers: {
+            "Access-Control-Allow-Origin": "*"
+            }
         };
         
     } catch (error) {
         return {
             statusCode: 500,
             body: JSON.stringify({ error: error.message }),
+            headers: {
+            "Access-Control-Allow-Origin": "*"
+            }   
         };
     }
     
