@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, JetBrains_Mono, Instrument_Sans } from "next/font/go
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils";
+import { Toaster } from "@/components/ui/sonner"
 
 const instrumentSansHeading = Instrument_Sans({subsets:['latin'],variable:'--font-heading'});
 
@@ -25,6 +26,8 @@ export default function RootLayout({
       className={cn("antialiased", fontSans.variable, "font-mono", jetbrainsMono.variable, instrumentSansHeading.variable)}
     >
       <body>
+        <Toaster />
+
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
