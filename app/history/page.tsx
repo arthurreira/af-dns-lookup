@@ -16,7 +16,7 @@ export default async function Page() {
   return (
 
     <main className="flex min-h-screen  ">
-      <div className="flex justify-center p-6">
+      <div className="flex justify-center p-4">
         <div className="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
           <div>
             <h1 className="font-medium">Here you can see your DNS lookup history</h1>
@@ -28,8 +28,8 @@ export default async function Page() {
         </div>
       </div>
 
-      <div className="mb-4">
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
+      <div className="my-4 w-full px-6">
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '1rem' }}>
           {data.map((lookup: LookupRecord, index: number) => (
             <Card key={index} style={{ minWidth: 0 }} className="flex flex-col space-y-10 gap-2 p-4 ">
               <CardHeader className=" p-0 ">
