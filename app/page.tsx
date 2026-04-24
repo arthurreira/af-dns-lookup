@@ -23,7 +23,7 @@ export default function Page() {
       setLoading(true)
       setResult(null)
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}?domain=${domain}&type=${domainType}`)
+      const res = await fetch(`/api/dns?domain=${domain}&type=${domainType}`)
         if (!res.ok) {
 
           throw new Error("failer to fecth dns data!")
