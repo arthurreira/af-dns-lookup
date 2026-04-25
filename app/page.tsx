@@ -29,7 +29,6 @@ export default function Page() {
           throw new Error("failer to fecth dns data!")
         }
         const data = await res.json();
-        console.log(data);
         setResult(data);
       }
       catch (error) {
