@@ -12,6 +12,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@arthurreira/analytics": "^0.2.2",
     "@phosphor-icons/react": "^2.1.10",
     "@types/uuid": "^11.0.0",
     "@upstash/redis": "^1.37.0",

@@ -1,19 +1,31 @@
-import { Geist, Geist_Mono, JetBrains_Mono, Instrument_Sans } from "next/font/google"
+import {
+  Geist,
+  Geist_Mono,
+  JetBrains_Mono,
+  Instrument_Sans,
+} from "next/font/google"
 
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils"
 import { Toaster } from "@/components/ui/sonner"
-import Link from "next/link";
+import Link from "next/link"
+import { Analytics } from "@arthurreira/analytics/client"
 
-const instrumentSansHeading = Instrument_Sans({subsets:['latin'],variable:'--font-heading'});
+const instrumentSansHeading = Instrument_Sans({
+  subsets: ["latin"],
+  variable: "--font-heading",
+})
 
 const fontSans = Geist({
   subsets: ["latin"],
   variable: "--font-sans",
 })
 
-const jetbrainsMono = JetBrains_Mono({subsets:['latin'],variable:'--font-mono'})
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+})
 
 export default function RootLayout({
   children,
@@ -24,31 +36,37 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={cn("antialiased", fontSans.variable, "font-mono", jetbrainsMono.variable, instrumentSansHeading.variable)}
+      className={cn(
+        "antialiased",
+        fontSans.variable,
+        "font-mono",
+        jetbrainsMono.variable,
+        instrumentSansHeading.variable
+      )}
     >
       <body>
-
-        <nav className="w-full border-b ">
-          <div className="container flex h-16 items-center space-x-4 mx-4 sm:space-x-6">
-              <Link
+        <nav className="w-full border-b">
+          <div className="container mx-4 flex h-16 items-center space-x-4 sm:space-x-6">
+            <Link
               href="/"
               className="text-sm font-medium transition-colors hover:text-primary"
             >
               DNS Lookup
             </Link>
             <div className="mx-auto">
-
-            <Link
-              href="/history"
-              className="text-sm font-medium transition-colors hover:text-primary"
-            >
-              History
-            </Link>
+              <Link
+                href="/history"
+                className="text-sm font-medium transition-colors hover:text-primary"
+              >
+                History
+              </Link>
             </div>
-            
           </div>
-
         </nav>
+        <Analytics
+          apiUrl={process.env.NEXT_PUBLIC_ANALYTICS_API_URL!}
+          apiKey={process.env.NEXT_PUBLIC_ANALYTICS_API_KEY!}
+        />
         <Toaster />
 
         <ThemeProvider>{children}</ThemeProvider>
